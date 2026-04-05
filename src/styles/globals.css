@@ -4,12 +4,10 @@
 
 :root {
     font-size: 62.5%;
-  --background: #F3F3F3;
+  --background: var(--color-light-default);
   --foreground: #25262A;
+  --border: var(--color-light-dark);
   --color-text: var(--foreground);
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary-default: #0D99FF;
@@ -42,7 +40,21 @@
   --text-6xl: 6.0rem;
 }
 
+@theme inline {
+  
+  
+}
+
 @layer base {
+
+  section {
+    padding: 20px 0px;
+  }
+
+  span {
+    color: var(--color-primary-default)
+  }
+  
   h1 {
     /* font-family: var(--font-saira), sans-serif; */
     font-size: 4rem;
@@ -51,9 +63,27 @@
     /* font-family: var(--font-saira), sans-serif; */
     font-size: 3.7rem;
   }
+  h3 {
+    /* font-family: var(--font-saira), sans-serif; */
+    font-size: 3.3rem;
+  }
+  h4 {
+    /* font-family: var(--font-saira), sans-serif; */
+    font-size: 3rem;
+  }
+  h5 {
+    /* font-family: var(--font-saira), sans-serif; */
+    /* font-weight: bold; */
+    font-size: 2rem;
+  }
+  h6 {
+    /* font-family: var(--font-saira), sans-serif; */
+    /* font-weight: bold; */
+    font-size: 1.7rem;
+  }
   p {
     /* font-family: var(--font-saira), sans-serif; */
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 }
 
@@ -68,6 +98,7 @@ body {
 .dark {
   --background: #25262A;
   --foreground: #F3F3F3;
+  --border: var(--color-dark-light);
   /* --color-text: var(--foreground); */
   font-family: var(--font-cursive), sans-serif;
 }

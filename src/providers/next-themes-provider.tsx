@@ -7,7 +7,7 @@ export function NextThemesProvider({ children }: NextThemesProviderProps) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="system"
       enableSystem
       disableTransitionOnChange
     >
