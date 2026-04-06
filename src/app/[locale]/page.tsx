@@ -1,15 +1,15 @@
 'use client'
 
-import { useMounted, useTranslation } from "@/src/hooks";
+import { useMounted } from "@/src/hooks";
 import { useTheme } from "next-themes";
 import { Logo } from "../_components/logo";
 import { ThemeSwitcher } from "../_components/themeswitcher/theme-switcher";
-import { AboutMe, ContactSection, Hero, WhatIDo } from "../_components/layout";
+import { AboutMe, ContactSection, Footer, Hero, WhatIDo } from "../_components/layout";
 import { Projects } from "../_components/layout/projects";
 
 export default function Home() {
-  const { resolvedTheme, setTheme } = useTheme()
-  const { locale } = useTranslation()
+  const { resolvedTheme } = useTheme()
+  // const { locale } = useTranslation()
 
   const mounted = useMounted();
 
@@ -33,6 +33,7 @@ export default function Home() {
         <AboutMe />
         <Projects />
         <ContactSection />
+        <Footer />
         {/* <h2>Caveat</h2> */}
         {/* <button onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}>Mudar tema</button> */}
       </main>
