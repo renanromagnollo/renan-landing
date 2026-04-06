@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-size: 62.5%;
+  --background: var(--color-light-default);
+  --foreground: #25262A;
+  --border: var(--color-light-dark);
+  --color-text: var(--foreground);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary-default: #0D99FF;
+  --color-primary-light: #5EB1ED;
+  --color-primary-dark: #0076CC;
+  --color-secondary-default: #FF6926;
+  --color-secondary-light: #FF9566;
+  --color-secondary-dark: #CC3F00;
+  --color-terciary-default: #8500F2;
+  --color-terciary-light: #AF4CFF;
+  --color-terciary-dark: #6109AA;
+  --color-success: #45DE45;
+  --color-danger: #DA0E0F;
+  --color-disable: #E7EAEE;
+  --color-dark-default: #25262A;
+  --color-dark-light: #3D3D3D;
+  --color-light-default: #F3F3F3;
+  --color-light-dark: #D1D1D1;
+  --font-sans: var(--font-saira);
+  --font-mono: var(--font-geist-mono);
+  --font-cursive: var(--font-caveat);
+  --text-sm: 1.4rem;
+  --text-base: 1.6rem;
+  --text-lg: 1.8rem;
+  --text-xl: 2.0rem;
+  --text-2xl: 2.4rem;
+  --text-3xl: 3.0rem;
+  --text-4xl: 3.6rem;
+  --text-5xl: 4.8rem;
+  --text-6xl: 6.0rem;
+}
+
+@theme inline {
+  
+  
+}
+
+@layer base {
+
+  * {
+    border-color: var(--border)
+  }
+
+  section {
+    padding: 20px 0px;
+  }
+
+  span {
+    color: var(--color-primary-default)
+  }
+  
+  h1 {
+    /* font-family: var(--font-saira), sans-serif; */
+    font-size: 4rem;
+  }
+  h2 {
+    /* font-family: var(--font-saira), sans-serif; */
+    font-size: 3.7rem;
+  }
+  h3 {
+    /* font-family: var(--font-saira), sans-serif; */
+    font-size: 3.3rem;
+  }
+  h4 {
+    /* font-family: var(--font-saira), sans-serif; */
+    font-size: 3rem;
+  }
+  h5 {
+    /* font-family: var(--font-saira), sans-serif; */
+    /* font-weight: bold; */
+    font-size: 2rem;
+  }
+  h6 {
+    /* font-family: var(--font-saira), sans-serif; */
+    /* font-weight: bold; */
+    font-size: 1.7rem;
+  }
+  p {
+    /* font-family: var(--font-saira), sans-serif; */
+    font-size: 2rem;
+  }
+}
+
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.dark {
+  --background: #25262A;
+  --foreground: #F3F3F3;
+  --border: var(--color-dark-light);
+  /* --color-text: var(--foreground); */
+  font-family: var(--font-cursive), sans-serif;
+}
