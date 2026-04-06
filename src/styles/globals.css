@@ -47,6 +47,10 @@
 
 @layer base {
 
+  * {
+    border-color: var(--border)
+  }
+
   section {
     padding: 20px 0px;
   }
