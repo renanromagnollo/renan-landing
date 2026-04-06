@@ -2,6 +2,7 @@
 
 import { TranslationProvider } from "../context"
 import { TDictionary } from "../types"
+import { NextThemesProvider } from "./next-themes-provider"
 
 interface ProvidersProps {
   children: React.ReactNode
@@ -11,8 +12,10 @@ interface ProvidersProps {
 export function Providers({ dictionary, children }: ProvidersProps) {
   // const dictionary = await getDictionary(locale)
   return (
-    <TranslationProvider dictionary={dictionary}>
-      {children}
-    </TranslationProvider>
+    <NextThemesProvider>
+      <TranslationProvider dictionary={dictionary}>
+        {children}
+      </TranslationProvider>
+    </NextThemesProvider>
   )
 }
