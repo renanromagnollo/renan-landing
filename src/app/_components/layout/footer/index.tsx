@@ -1,4 +1,5 @@
 import { Mail, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 const socialLinks = [
   {
@@ -73,7 +74,9 @@ export function Footer() {
                 aria-label={item.name}
                 className="group"
               >
-                <img
+                <Image
+                  width={20}
+                  height={20}
                   src={item.icon}
                   alt={item.name}
                   className="w-5 h-5 opacity-80 group-hover:opacity-100 transition"
