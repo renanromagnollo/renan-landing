@@ -66,7 +66,7 @@ export function AboutMe() {
   return (
     <div>
 
-      <section className="w-full flex justify-center items-center gap-16">
+      <section className="w-full flex flex-col md:flex-row justify-center items-center gap-5">
         <div className="flex flex-col items-center text-center">
           <Image
             src={`https://github.com/renanromagnollo.png`}

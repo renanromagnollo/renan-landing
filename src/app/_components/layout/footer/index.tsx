@@ -51,9 +51,9 @@ export function Footer() {
 
             <a
               href="mailto:renanromagnollo@gmail.com?subject=Oportunidade%20Frontend"
-              className="flex items-center gap-2 hover:underline text-zinc-700 dark:text-zinc-300"
+              className="flex items-center gap-2 hover:underline text-dark dark:text-light"
             >
-              <Mail size={16} />
+              <Mail size={20} />
               renanromagnollo@gmail.com
             </a>
 
@@ -79,7 +79,7 @@ export function Footer() {
                   height={20}
                   src={item.icon}
                   alt={item.name}
-                  className="w-5 h-5 opacity-80 group-hover:opacity-100 transition"
+                  className="opacity-80 group-hover:opacity-100 transition"
                 />
               </a>
             ))}
