@@ -51,6 +51,11 @@
     border-color: var(--border)
   }
 
+  a {
+    font-size: var(--text-xs);
+    font-weight: bold;
+  }
+
   section {
     padding: 20px 0px;
   }
