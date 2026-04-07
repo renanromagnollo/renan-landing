@@ -1,6 +1,9 @@
 'use client'
 
 import { useMounted } from "@/src/hooks";
+import { useTheme } from "next-themes";
+import { Logo } from "../_components/logo";
+import { ThemeSwitcher } from "../_components/themeswitcher/theme-switcher";
 import { AboutMe, ContactSection, Footer, Header, Hero, WhatIDo } from "../_components/layout";
 import { Projects } from "../_components/layout/projects";
 
