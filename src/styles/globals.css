@@ -48,7 +48,8 @@
 @layer base {
 
   * {
-    border-color: var(--border)
+    border-color: var(--border);
+    scroll-behavior: smooth;
   }
 
   a {
@@ -94,6 +95,7 @@
     /* font-family: var(--font-saira), sans-serif; */
     font-size: 2rem;
   }
+  
 }
 
 
