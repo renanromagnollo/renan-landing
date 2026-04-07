@@ -8,15 +8,15 @@ import { AboutMe, ContactSection, Footer, Header, Hero, WhatIDo } from "../_comp
 import { Projects } from "../_components/layout/projects";
 
 export default function Home() {
-  const { resolvedTheme } = useTheme()
+  // const { resolvedTheme } = useTheme()
   // const { locale } = useTranslation()
 
   const mounted = useMounted();
 
-  if (!mounted) return null; // 👈 evita mismatch
+  if (!mounted) return null;
 
-  const theme: "dark" | "light" =
-    resolvedTheme === "dark" ? "dark" : "light";
+  // const theme: "dark" | "light" =
+  //   resolvedTheme === "dark" ? "dark" : "light";
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 font-sans dark:bg-dark">
