@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { forwardRef } from "react";
 
 type Project = {
   title: string;
@@ -33,10 +34,9 @@ const projects: Project[] = [
   },
 ];
 
-
-export function Projects() {
+export const Projects = forwardRef<HTMLElement>((props, ref) => {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-24">
+    <section ref={ref} className="max-w-6xl mx-auto px-6 py-24">
       <header className="mb-16">
         <h3 className="text-primary">
           Projetos em destaque
@@ -137,4 +137,6 @@ export function Projects() {
 
 
   )
-}
+})
+
+Projects.displayName = 'Projects'
