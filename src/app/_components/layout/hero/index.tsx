@@ -1,8 +1,6 @@
-type HeroProps = {
-  onScrollToProjects: () => void
-}
 
-export function Hero({ onScrollToProjects }: HeroProps) {
+
+export function Hero() {
   return (
     <section className="min-h-[55vh] flex flex-col justify-center max-w-5xl mx-auto">
       <h2 className=" sm:text-5xl leading-tight">
@@ -17,7 +15,7 @@ export function Hero({ onScrollToProjects }: HeroProps) {
       </p>
 
       <div className="mt-8 flex gap-4">
-        <button onClick={onScrollToProjects} className="px-6 py-3 rounded-xl bg-foreground text-background">
+        <button className="px-6 py-3 rounded-xl bg-foreground text-background">
           Projetos
         </button>
 

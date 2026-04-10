@@ -6,13 +6,11 @@ const GTM_ID = "GTM-T4H5S9FS"; // seu container
 
 export function GTM() {
   return (
-    <>
-      {/* Head */}
-      <Script
-        id="gtm-script"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
+    <Script
+      id="gtm-script"
+      strategy="afterInteractive"
+      dangerouslySetInnerHTML={{
+        __html: `
             (function(w,d,s,l,i){
               w[l]=w[l]||[];
               w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
@@ -23,8 +21,7 @@ export function GTM() {
               f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${GTM_ID}');
           `,
-        }}
-      />
-    </>
+      }}
+    />
   );
 }
