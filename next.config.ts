@@ -1,10 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
-    domains: ['github.com', "cdn.jsdelivr.net"],
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "github.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net",
+      },
+      {
+        protocol: "https",
+        hostname: "us-west-2.graphassets.com",
+      },
       {
         protocol: "https",
         hostname: "source.unsplash.com",
