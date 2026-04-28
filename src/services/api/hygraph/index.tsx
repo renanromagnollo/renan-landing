@@ -4,11 +4,9 @@ import { RawHygraphProject } from "./raw-hygraph";
 import { TProject } from "@/src/domain/project";
 
 export class HygraphAPI implements IHygraphApi {
+  private readonly queries: Record<string, string>;
 
-  private readonly queries: Record<string, string>
-  constructor(
-    private readonly env: TEnvironment,
-  ) {
+  constructor(private readonly env: TEnvironment) {
     this.queries = {
       projects: `
         query Projects($locale: Locale!) {
@@ -57,10 +55,9 @@ export class HygraphAPI implements IHygraphApi {
             }
             link
           }
-      }
-      `
-
-    }
+        }
+      `,
+    };
   }
 
   private getQuery(queryName: THygraphSchema): string {
@@ -71,70 +68,110 @@ export class HygraphAPI implements IHygraphApi {
     return query;
   }
 
-  private async queryHygraph(queryName: THygraphSchema, delay = 1, variables = {}, revalidate = 1): Promise<unknown> {
+  private async queryHygraph<T>(
+    queryName: THygraphSchema,
+    delay = 0,
+    variables = {},
+    revalidate = 1
+  ): Promise<T> {
     try {
       if (delay > 0) {
         await new Promise((resolve) => setTimeout(resolve, delay * 1000));
       }
 
-      const query = this.getQuery(queryName)
+      const query = this.getQuery(queryName);
 
       const response = await fetch(this.env.hygraph.apiUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           ...(this.env.hygraph.accessToken && {
-            Authorization: `Bearer ${this.env.hygraph.accessToken}`
+            Authorization: `Bearer ${this.env.hygraph.accessToken}`,
           }),
         },
         body: JSON.stringify({ query, variables }),
         next: {
-          revalidate: revalidate * 60
+          revalidate: (revalidate ?? 1) * 60, // ✅ corrigido
         },
       });
 
-      const { data, errors } = await response.json();
+      const json = await response.json();
 
-      if (errors) {
-        throw new Error(errors[0].message);
+      if (!response.ok || json.errors) {
+        throw new Error(json?.errors?.[0]?.message || "Hygraph error");
       }
 
-      return data
-
+      return json.data as T;
     } catch (error) {
-      console.error('Error fetching data:', error);
-      throw error;
+      console.error("Error fetching data:", error);
+      return {} as T
     }
   }
 
-  private mapRawHygraphProject(raw: RawHygraphProject): TProject {
+  private mapRawHygraphProject(raw?: RawHygraphProject): TProject {
     return {
-      id: raw.id,
-      order: raw.order,
-      featured: raw.featured,
-      title: raw.title,
-      slug: raw.slug,
-      subtitle: raw.subtitle,
-      name: raw.projectName,
-      image: raw.image.url,
-      technologies: raw.technologies,
-      text: raw.text.raw,
-      link: raw.link
+      id: raw?.id ?? crypto.randomUUID(),
+      order: raw?.order ?? 0,
+      featured: raw?.featured ?? false,
+      title: raw?.title ?? "",
+      slug: raw?.slug ?? "",
+      subtitle: raw?.subtitle ?? "",
+      name: raw?.projectName ?? "",
+      image: raw?.image?.url ?? "",
+      technologies: raw?.technologies ?? [],
+      text: raw?.text?.raw ?? null,
+      link: raw?.link ?? "",
+    };
+  }
+
+  async queryProjects({
+    locale,
+    revalidate,
+  }: {
+    locale: string;
+    revalidate?: number;
+  }): Promise<TProject[]> {
+
+    const data = await this.queryHygraph<{
+      projects: RawHygraphProject[]
+    }>(
+      "projects",
+      0,
+      { locale },
+      revalidate
+    );
+
+    const projects = data.projects ?? [];
+
+    return projects
+      .filter(Boolean)
+      .map((p) => this.mapRawHygraphProject(p));
+  }
+
+  async queryProjectItem({
+    slug,
+    locale,
+    revalidate,
+  }: {
+    slug: string;
+    locale: string;
+    revalidate?: number;
+  }): Promise<TProject | null> {
+    const data = await this.queryHygraph<{
+      projects: RawHygraphProject[]
+    }>(
+      "projectItem",
+      0,
+      { slug, locale },
+      revalidate
+    );
+
+    const projectItem = data.projects?.[0]
+
+    if (!projectItem) {
+      return null
     }
+
+    return this.mapRawHygraphProject(projectItem);
   }
-
-  async queryProjects({ locale, revalidate }: { locale: string, revalidate?: number }): Promise<TProject[]> {
-    const { projects } = await this.queryHygraph('projects', 1, { locale }, revalidate) as { projects: RawHygraphProject[] }
-    return projects.map(this.mapRawHygraphProject)
-  }
-
-  async queryProjectItem({ slug, locale, revalidate }: { slug: string, locale: string, revalidate?: number }): Promise<TProject> {
-    console.log(slug)
-    const { projects } = await this.queryHygraph('projectItem', 1, { slug, locale }, revalidate) as { projects: RawHygraphProject[] }
-    console.log(projects)
-    const projectItem = projects[0]
-    return this.mapRawHygraphProject(projectItem)
-  }
-
-
 }

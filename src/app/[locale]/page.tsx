@@ -6,23 +6,16 @@ import { Projects } from "../_components/layout/pages/home/projects";
 // import { useRef } from "react";
 
 export type HomeProps = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
-export default function Home({ params }: HomeProps) {
+export default async function Home({ params }: HomeProps) {
   // const { resolvedTheme } = useTheme()
   // const { locale } = useTranslation()
 
-  const resolvedParams = params
+  // const { locale = 'pt' } = await params
 
-  const locale = resolvedParams?.locale ?? 'pt'
-  const graphLocale = locale === 'pt' ? 'pt' : 'en'
-
-  // const projectsRef = useRef<HTMLDivElement | null>(null)
-
-  // const mounted = useMounted();
-
-  // if (!mounted) return null;
+  // const graphLocale = locale === 'pt' ? 'pt' : 'en'
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 font-sans">
@@ -31,7 +24,7 @@ export default function Home({ params }: HomeProps) {
         <Hero />
         <WhatIDo />
         <AboutMe />
-        <Projects locale={graphLocale} />
+        <Projects params={params} />
         <ContactSection />
         <Footer />
         {/* <h2>Caveat</h2> */}
