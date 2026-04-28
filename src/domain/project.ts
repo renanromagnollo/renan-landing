@@ -10,6 +10,6 @@ export type TProject = {
   name: string;
   image: string;
   technologies: { name: string }[];
-  text: RichTextContent;
+  text: RichTextContent | null;
   link: string;
 }
