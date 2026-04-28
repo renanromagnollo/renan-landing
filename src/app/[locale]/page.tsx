@@ -2,7 +2,7 @@
 // import { useTheme } from "next-themes";
 // import { Logo } from "../_components/logo";
 import { AboutMe, ContactSection, Footer, Header, Hero, WhatIDo } from "../_components/layout";
-import { Projects } from "../_components/layout/projects";
+import { Projects } from "../_components/layout/pages/home/projects";
 // import { useRef } from "react";
 
 export type HomeProps = {

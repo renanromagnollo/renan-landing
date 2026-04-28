@@ -1,9 +1,8 @@
 'use client'
 
 import { useTheme } from "next-themes";
-import { Logo } from "../../logo";
-import { ThemeSwitcher } from "../../themeswitcher/theme-switcher";
 import { useMounted } from "@/src/hooks";
+import { Logo, ThemeSwitcher } from "..";
 
 export function Header() {
 
