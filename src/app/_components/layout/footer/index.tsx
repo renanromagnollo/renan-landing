@@ -1,23 +1,6 @@
 import { Mail, MessageCircle } from "lucide-react";
-import Image from "next/image";
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    url: "https://github.com/seuuser",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg",
-  },
-  {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/seulink",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg",
-  },
-  {
-    name: "Instagram",
-    url: "https://instagram.com/seuuser",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg",
-  },
-];
+import { Icon } from "../icons";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -65,25 +48,15 @@ export function Footer() {
           <h3 className="text-sm font-semibold mb-4">Redes</h3>
 
           <div className="flex gap-5 items-center">
-
-            {socialLinks.map((item) => (
-              <a
-                key={item.name}
-                href={item.url}
-                target="_blank"
-                aria-label={item.name}
-                className="group"
-              >
-                <Image
-                  width={20}
-                  height={20}
-                  src={item.icon}
-                  alt={item.name}
-                  className="opacity-80 group-hover:opacity-100 transition"
-                />
-              </a>
-            ))}
-
+            <Link href='https://github.com/renanromagnollo' target="_blank" title="GitHub">
+              <Icon name="github" />
+            </Link>
+            <Link href='https://www.linkedin.com/in/renanromagnollo/' target="_blank" title="Linkedin">
+              <Icon name="linkedin" />
+            </Link>
+            <Link href='https://www.instagram.com/renanromagnollo/' target="_blank" title="Instagram">
+              <Icon name="instagram" />
+            </Link>
           </div>
         </div>
       </div>
