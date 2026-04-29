@@ -84,6 +84,7 @@ export function Footer() {
       </div>
 
 
+
       <div className="text-center text-sm text-zinc-500 py-4 border-t border-zinc-200 dark:border-zinc-800">
         © {new Date().getFullYear()} Renan Romagnollo. Todos os direitos reservados.
       </div>
