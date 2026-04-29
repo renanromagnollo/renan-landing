@@ -45,7 +45,6 @@ export default function RootLayout({
         `}
       >
         <GTM />
-        <AnalyticsRoot />
         {children}
       </body>
     </html>

@@ -1,42 +1,30 @@
-'use client'
 
-import { useMounted } from "@/src/hooks";
-import { useTheme } from "next-themes";
-import { Logo } from "../_components/logo";
+// import { useTheme } from "next-themes";
+// import { Logo } from "../_components/logo";
 import { AboutMe, ContactSection, Footer, Header, Hero, WhatIDo } from "../_components/layout";
-import { Projects } from "../_components/layout/projects";
-import { useRef } from "react";
+import { Projects } from "../_components/layout/pages/home/projects";
+// import { useRef } from "react";
 
-export default function Home() {
+export type HomeProps = {
+  params: Promise<{ locale: string }>
+}
+
+export default async function Home({ params }: HomeProps) {
   // const { resolvedTheme } = useTheme()
   // const { locale } = useTranslation()
-  const projectsRef = useRef<HTMLDivElement | null>(null)
 
-  const mounted = useMounted();
+  // const { locale = 'pt' } = await params
 
-  if (!mounted) return null;
-
-  function handleScroll() {
-    if (!projectsRef.current) return;
-
-    const top = projectsRef.current.offsetTop;
-
-    window.scrollTo({
-      top,
-      behavior: 'smooth',
-    });
-  }
-  // const theme: "dark" | "light" =
-  //   resolvedTheme === "dark" ? "dark" : "light";
+  // const graphLocale = locale === 'pt' ? 'pt' : 'en'
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 font-sans">
       <main className="flex flex-col w-full gap-5 py-16 md:py-24">
         <Header />
-        <Hero onScrollToProjects={handleScroll} />
+        <Hero />
         <WhatIDo />
         <AboutMe />
-        <Projects ref={projectsRef} />
+        <Projects params={params} />
         <ContactSection />
         <Footer />
         {/* <h2>Caveat</h2> */}
