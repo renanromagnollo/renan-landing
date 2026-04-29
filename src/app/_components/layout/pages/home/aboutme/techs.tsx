@@ -63,7 +63,7 @@ const techs: Tech[] = [
 export function Techs() {
   return (
     <div className="w-full p-6">
-      <h4 className="font-cursive text-center mb-6">...e abaixo algumas tecnologias que uso:</h4>
+      <h4 className="font-cursive text-center mb-6">...e abaixo algumas das tecnologias que utilizo:</h4>
 
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 justify-items-center">

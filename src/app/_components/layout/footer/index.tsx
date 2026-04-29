@@ -1,39 +1,20 @@
 import { Mail, MessageCircle } from "lucide-react";
+import { Icon } from "../icons";
+import Link from "next/link";
+import { Spotify } from "../spotify";
 import Image from "next/image";
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    url: "https://github.com/seuuser",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg",
-  },
-  {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/seulink",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg",
-  },
-  {
-    name: "Instagram",
-    url: "https://instagram.com/seuuser",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg",
-  },
-];
 
 export function Footer() {
   return (
     <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-20">
       <div className="max-w-6xl mx-auto px-6 py-12 grid gap-10 md:grid-cols-3">
-
-        {/* Identidade */}
         <div>
           <h2 className="text-lg font-semibold">Renan Romagnollo</h2>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">
-            Desenvolvedor Frontend especializado em React e Next.js,
-            criando interfaces modernas, performáticas e focadas em conversão.
+            Desenvolvedor Frontend especializado em interfaces modernas, performáticas e focadas em conversão.
           </p>
         </div>
 
-        {/* Contato (CTA forte) */}
         <div>
           <h3 className="text-sm font-semibold mb-4">Contato</h3>
 
@@ -60,33 +41,49 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Redes sociais */}
         <div>
           <h3 className="text-sm font-semibold mb-4">Redes</h3>
 
           <div className="flex gap-5 items-center">
-
-            {socialLinks.map((item) => (
-              <a
-                key={item.name}
-                href={item.url}
-                target="_blank"
-                aria-label={item.name}
-                className="group"
-              >
-                <Image
-                  width={20}
-                  height={20}
-                  src={item.icon}
-                  alt={item.name}
-                  className="opacity-80 group-hover:opacity-100 transition"
-                />
-              </a>
-            ))}
-
+            <Link href='https://github.com/renanromagnollo' target="_blank" title="GitHub">
+              <Icon name="github" />
+            </Link>
+            <Link href='https://www.linkedin.com/in/renanromagnollo/' target="_blank" title="Linkedin">
+              <Icon name="linkedin" />
+            </Link>
+            <Link href='https://www.instagram.com/renanromagnollo/' target="_blank" title="Instagram">
+              <Icon name="instagram" />
+            </Link>
           </div>
         </div>
+
+
       </div>
+
+      <div className="flex flex-col gap-5 md:flex-row">
+        <div className="relative w-full aspect-[16/9] overflow-hidden">
+          <Image
+            src='/assets/rnn_art.webp'
+            alt={`renanromagnollo`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover object-center scale-150"
+            quality={90}
+            priority
+          />
+        </div>
+        <div>
+          <div className="mb-6">
+            <h4 className="font-cursive leading-tight">
+              Quer melhorar seu foco e produtividade?
+            </h4>
+            <h4 className="font-cursive text-primary leading-10">Utilize fones de ouvido e ouça a minha playlist para reduzir distrações e manter sua concentração...</h4>
+          </div>
+          <Spotify />
+        </div>
+      </div>
+
+
 
       <div className="text-center text-sm text-zinc-500 py-4 border-t border-zinc-200 dark:border-zinc-800">
         © {new Date().getFullYear()} Renan Romagnollo. Todos os direitos reservados.

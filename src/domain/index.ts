@@ -1,0 +1,1 @@
+export { type TProject } from '@/src/domain/project';

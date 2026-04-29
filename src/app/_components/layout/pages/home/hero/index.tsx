@@ -1,4 +1,5 @@
 
+
 export function Hero() {
   return (
     <section className="min-h-[55vh] flex flex-col justify-center max-w-5xl mx-auto">
@@ -14,9 +15,9 @@ export function Hero() {
       </p>
 
       <div className="mt-8 flex gap-4">
-        <a className="px-6 py-3 rounded-xl bg-foreground text-background">
+        <button className="px-6 py-3 rounded-xl bg-foreground text-background">
           Projetos
-        </a>
+        </button>
 
         <a className="px-6 py-3 rounded-xl border">
           Contato
