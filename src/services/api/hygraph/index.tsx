@@ -91,7 +91,7 @@ export class HygraphAPI implements IHygraphApi {
         },
         body: JSON.stringify({ query, variables }),
         next: {
-          revalidate: (revalidate ?? 1) * 60, // ✅ corrigido
+          revalidate: (revalidate ?? 1) * 60,
         },
       });
 
