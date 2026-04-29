@@ -1,3 +1,4 @@
+
 import { TEnvironment } from "@/src/config";
 import { IHygraphApi, THygraphSchema } from "@/src/types";
 import { RawHygraphProject } from "./raw-hygraph";
@@ -91,7 +92,7 @@ export class HygraphAPI implements IHygraphApi {
         },
         body: JSON.stringify({ query, variables }),
         next: {
-          revalidate: (revalidate ?? 1) * 60, // ✅ corrigido
+          revalidate: (revalidate ?? 1) * 60,
         },
       });
 

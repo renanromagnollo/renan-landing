@@ -75,13 +75,14 @@ export function Footer() {
         <div>
           <div className="mb-6">
             <h4 className="font-cursive leading-tight">
-              Quer melhorar seu foco enquanto trabalha ou estuda?
+              Quer melhorar seu foco e produtividade?
             </h4>
-            <h6 className="text-primary">Coloque um fone e ouça a minha playlist para reduzir distrações e manter sua concentração:</h6>
+            <h4 className="font-cursive text-primary leading-10">Utilize fones de ouvido e ouça a minha playlist para reduzir distrações e manter sua concentração...</h4>
           </div>
           <Spotify />
         </div>
       </div>
+
 
 
       <div className="text-center text-sm text-zinc-500 py-4 border-t border-zinc-200 dark:border-zinc-800">
