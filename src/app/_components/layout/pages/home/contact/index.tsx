@@ -1,5 +1,7 @@
 "use client";
 
+import { createContact } from "@/src/services/api";
+import { TContactFormInput } from "@/src/types";
 import { useState } from "react";
 
 export function ContactSection() {
@@ -17,12 +19,20 @@ export function ContactSection() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    console.log("Dados do formulário:", form);
+    const formData = new FormData(e.currentTarget);
 
-    alert("Mensagem enviada com sucesso!");
+    const data = Object.fromEntries(formData) as TContactFormInput;
+
+    try {
+      await createContact(data);
+      alert("Mensagem enviada com sucesso!");
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao enviar mensagem");
+    }
   }
 
   return (
