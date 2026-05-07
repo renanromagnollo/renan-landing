@@ -1,4 +1,5 @@
 export type TSupabaseEnv = {
   apiUrl: string,
-  secretKey: string
+  secretKey: string,
+  roleKey: string
 }
