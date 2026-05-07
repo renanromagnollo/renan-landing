@@ -35,7 +35,7 @@ export function CardProject({ project, locale }: CardProjectProps) {
             {project.technologies && project.technologies.map((tech) => (
               <span
                 key={tech.name}
-                className="text-xs border px-2 py-1 rounded-md"
+                className="border px-2 py-1 rounded-md"
               >
                 {tech.name}
               </span>

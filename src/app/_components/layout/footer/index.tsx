@@ -61,7 +61,7 @@ export function Footer() {
       </div>
 
       <div className="flex flex-col gap-5 md:flex-row">
-        <div className="relative w-full aspect-[16/9] overflow-hidden">
+        <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden">
           <Image
             src='/assets/rnn_art.webp'
             alt={`renanromagnollo`}

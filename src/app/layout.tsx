@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Saira, Caveat } from "next/font/google";
 import "../styles/globals.css";
-import { AnalyticsRoot, GTM } from "../services/analytics";
+import { GTM } from "../services/analytics";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +47,12 @@ export default function RootLayout({
       >
         <GTM />
         {children}
+        <Toaster
+          position="bottom-right"
+          richColors
+          closeButton
+          duration={5000}
+        />
       </body>
     </html>
   );

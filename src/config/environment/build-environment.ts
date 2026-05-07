@@ -11,7 +11,12 @@ export function buildEnvironment() {
     },
     supabase: {
       apiUrl: process.env.SUPABASE_URL as string,
-      secretKey: process.env.SUPABASE_SECRET_KEY as string
+      secretKey: process.env.SUPABASE_SECRET_KEY as string,
+      roleKey: process.env.SUPABASE_SERVICE_ROLE_KEY as string
+    },
+    turnstile: {
+      secretKey: process.env.TURNSTILE_SECRET_KEY!,
+      siteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!,
     }
   }
 }

@@ -1,28 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { createContact } from "@/src/app/api";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
 
 export function ContactSection() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    type: "job",
-    message: "",
-  });
+  const startTime = useRef<number>(0);
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  useEffect(() => {
+    startTime.current = Date.now();
+  }, []);
+
+  async function handleSubmit(
+    e: React.SubmitEvent<HTMLFormElement>
   ) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    console.log("Dados do formulário:", form);
+    const form = e.currentTarget;
 
-    alert("Mensagem enviada com sucesso!");
+    const formData = new FormData(form);
+
+    // ⏱️ Delay humano
+    const timeSpent = Date.now() - startTime.current;
+
+    if (timeSpent < 2000) {
+      toast.warning("Envio muito rápido");
+      return;
+    }
+
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      company: (formData.get("company") as string) || "",
+      type: formData.get("type") as
+        | "job"
+        | "freelance"
+        | "partnership",
+      message: formData.get("message") as string,
+      website: (formData.get("website") as string) || "",
+    };
+
+    try {
+      await createContact(data);
+
+      toast.success("Mensagem enviada com sucesso!");
+
+      form.reset();
+    } catch (error) {
+      console.error(error);
+
+      toast.error("Erro ao enviar mensagem");
+    }
   }
 
   return (
@@ -46,7 +74,6 @@ export function ContactSection() {
             name="name"
             placeholder="Seu nome"
             className="p-3 rounded-lg border dark:bg-dark"
-            onChange={handleChange}
             required
           />
 
@@ -55,22 +82,22 @@ export function ContactSection() {
             type="email"
             placeholder="Seu email"
             className="p-3 rounded-lg border dark:bg-zinc-800"
-            onChange={handleChange}
             required
           />
         </div>
+
+        {/* Honeypot */}
+        <input type="text" name="website" className="hidden" />
 
         <input
           name="company"
           placeholder="Empresa (opcional)"
           className="w-full p-3 rounded-lg border dark:bg-zinc-800"
-          onChange={handleChange}
         />
 
         <select
           name="type"
           className="w-full p-3 rounded-lg border dark:bg-zinc-800"
-          onChange={handleChange}
         >
           <option value="job">Oportunidade de trabalho</option>
           <option value="freelance">Freelance</option>
@@ -81,7 +108,6 @@ export function ContactSection() {
           name="message"
           placeholder="Fale um pouco sobre a oportunidade ou projeto..."
           className="w-full p-3 rounded-lg border h-32 dark:bg-zinc-800"
-          onChange={handleChange}
           required
         />
 
