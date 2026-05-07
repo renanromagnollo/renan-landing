@@ -1,5 +1,5 @@
 import { RichTextHygraph } from "@/src/app/_components/hygraph/rich-text";
-import { getProjectItem } from "@/src/services/api";
+import { getProjectItem } from "@/src/app/api";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 

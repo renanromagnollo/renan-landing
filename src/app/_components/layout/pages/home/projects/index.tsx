@@ -1,4 +1,4 @@
-import { getProjects } from "@/src/services/api";
+import { getProjects } from "@/src/app/api";
 import { CardProject } from "./card/card-project";
 
 export async function Projects({ params }: { params: Promise<{ locale: string }> }) {
