@@ -1,10 +1,15 @@
 "use client";
 
 import { createContact } from "@/src/app/api";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
 
 export function ContactSection() {
-  const startTime = useRef(Date.now());
+  const startTime = useRef<number>(0);
+
+  useEffect(() => {
+    startTime.current = Date.now();
+  }, []);
 
   async function handleSubmit(
     e: React.SubmitEvent<HTMLFormElement>
@@ -19,7 +24,7 @@ export function ContactSection() {
     const timeSpent = Date.now() - startTime.current;
 
     if (timeSpent < 2000) {
-      alert("Envio muito rápido");
+      toast.warning("Envio muito rápido");
       return;
     }
 
@@ -38,13 +43,13 @@ export function ContactSection() {
     try {
       await createContact(data);
 
-      alert("Mensagem enviada com sucesso!");
+      toast.success("Mensagem enviada com sucesso!");
 
       form.reset();
     } catch (error) {
       console.error(error);
 
-      alert("Erro ao enviar mensagem");
+      toast.error("Erro ao enviar mensagem");
     }
   }
 
