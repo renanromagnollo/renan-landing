@@ -58,7 +58,7 @@ export function ContactSection() {
   }
 
   return (
-    <section className="w-full max-w-3xl mx-auto py-16 px-4">
+    <section id="contact" className="w-full max-w-3xl mx-auto py-16 px-4">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold mb-3">
           {t.home.contact.title}

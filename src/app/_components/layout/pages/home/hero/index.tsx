@@ -2,11 +2,19 @@
 
 import { useTranslation } from "@/src/hooks"
 
-
 export function Hero() {
-
   const t = useTranslation()
-  console.log(t)
+
+  function scrollToSection(id: string) {
+    const element = document.getElementById(id)
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  }
 
   return (
     <section className="min-h-[55vh] flex flex-col justify-center max-w-5xl mx-auto">
@@ -22,13 +30,17 @@ export function Hero() {
       </p>
 
       <div className="mt-8 flex gap-4">
-        <button className="px-6 py-3 rounded-xl bg-foreground text-background">
-          Projetos
+        <button
+          onClick={() => scrollToSection('projects')}
+          className="px-6 py-3 rounded-xl bg-foreground text-background">
+          {t.home.hero.buttonProjects}
         </button>
 
-        <a className="px-6 py-3 rounded-xl border">
-          Contato
-        </a>
+        <button
+          onClick={() => scrollToSection('contact')}
+          className="px-6 py-3 rounded-xl border">
+          {t.home.hero.buttonContact}
+        </button>
       </div>
     </section>
   )
