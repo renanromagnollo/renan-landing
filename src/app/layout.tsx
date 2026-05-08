@@ -47,6 +47,7 @@ export default function RootLayout({
       >
         <GTM />
         {children}
+
         <Toaster
           position="bottom-right"
           richColors

@@ -1,7 +1,7 @@
 'use client'
 
 import { TranslationProvider } from "../context"
-import { TDictionary } from "../types"
+import { TDictionary } from "../i18n/types"
 import { NextThemesProvider } from "./next-themes-provider"
 
 interface ProvidersProps {

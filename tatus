@@ -1,0 +1,53 @@
+[34m1263a40 [31m (HEAD -> dev, origin/dev) [37mfeat: add Language Switcher - [36mrenanromagnollo, [32m13 hours ago
+[34m377bbba [31m [37mfeat: add i18n structures - [36mrenanromagnollo, [32m13 hours ago
+[34m5b38787 [31m [37mMerge pull request #26 from renanromagnollo/issue-21 - [36mGitHub, [32m27 hours ago
+[34m267ef6d [31m (origin/issue-21, issue-21) [37mfeat: add Toaster sonner - [36mrenanromagnollo, [32m27 hours ago
+[34m8ed8517 [31m [37mfeat: add supabase form - [36mrenanromagnollo, [32m27 hours ago
+[34m8d6e262 [31m [37mfeat: add SupabaseAPI - [36mrenanromagnollo, [32m2 days ago
+[34mb080416 [31m [37mMerge pull request #23 from renanromagnollo/issue-12 - [36mrenanromagnollo, [32m4 days ago
+[34mf4ebccd [31m [37mMerge pull request #23 from renanromagnollo/issue-12 - [36mGitHub, [32m9 days ago
+[34m329d648 [31m (origin/issue-12, issue-12) [37mfix: resolve merge conflicts - [36mrenanromagnollo, [32m9 days ago
+[34m5b21306 [31m [37mfix: ajuste hygraph antes de sincronizar branches - [36mrenanromagnollo, [32m9 days ago
+[34m761123f [31m [37mfeat: add spotify - [36mrenanromagnollo, [32m9 days ago
+[34m83d9643 [31m [37mfeat: add social icons components - [36mrenanromagnollo, [32m9 days ago
+[34m4ad77ec [31m [37mfix: Google Analytics - [36mrenanromagnollo, [32m9 days ago
+[34m93e7ed3 [31m [37mfeat: add Hygraph API - [36mrenanromagnollo, [32m9 days ago
+[34m3cb2fd6 [31m [37mrefactor: aboutme section - [36mrenanromagnollo, [32m9 days ago
+[34m2ad48e9 [31m [37mMerge pull request #22 from renanromagnollo/issue-12 - [36mGitHub, [32m9 days ago
+[34m251da2d [31m [37mfeat: add spotify - [36mrenanromagnollo, [32m9 days ago
+[34mc99dcc9 [31m [37mfeat: add social icons components - [36mrenanromagnollo, [32m10 days ago
+[34m096ad60 [31m [37mfix: Google Analytics - [36mrenanromagnollo, [32m11 days ago
+[34maf5f0d1 [31m [37mfeat: add Hygraph API - [36mrenanromagnollo, [32m11 days ago
+[34mc726243 [31m [37mrefactor: aboutme section - [36mrenanromagnollo, [32m4 weeks ago
+[34m93b74b8 [31m [37mMerge pull request #20 from renanromagnollo/dev - [36mGitHub, [32m4 weeks ago
+[34m118639c [31m [37mrefactor: aboutme section - [36mrenanromagnollo, [32m4 weeks ago
+[34mcd9980c [31m [37mMerge pull request #19 from renanromagnollo/dev - [36mGitHub, [32m5 weeks ago
+[34m2be5aa3 [31m [37mrefactor: Hero - [36mrenanromagnollo, [32m5 weeks ago
+[34mce8a83e [31m [37mMerge pull request #18 from renanromagnollo/dev - [36mGitHub, [32m5 weeks ago
+[34md64ef6f [31m [37mMerge branch 'main' into dev - [36mGitHub, [32m5 weeks ago
+[34m0754045 [31m [37mfeat: add Footer - [36mrenanromagnollo, [32m5 weeks ago
+[34me0cc005 [31m [37mMerge pull request #17 from renanromagnollo/dev - [36mGitHub, [32m5 weeks ago
+[34mbc4a542 [31m [37mfeat: add Footer - [36mrenanromagnollo, [32m5 weeks ago
+[34m5cd36a5 [31m [37mMerge pull request #16 from renanromagnollo/dev - [36mGitHub, [32m5 weeks ago
+[34m916f7f7 [31m [37mMerge branch 'main' into dev - [36mGitHub, [32m5 weeks ago
+[34m95a59ae [31m [37mfeat: add Footer - [36mrenanromagnollo, [32m5 weeks ago
+[34m3c5e92d [31m [37mMerge pull request #15 from renanromagnollo/dev - [36mGitHub, [32m5 weeks ago
+[34m5f6c384 [31m [37mfeat: add Footer - [36mrenanromagnollo, [32m5 weeks ago
+[34md7a5295 [31m [37mMerge pull request #14 from renanromagnollo/dev - [36mGitHub, [32m5 weeks ago
+[34medd4d3a [31m [37mfeat: add ContactSection - [36mrenanromagnollo, [32m5 weeks ago
+[34m60c5851 [31m [37mMerge pull request #13 from renanromagnollo/issue-4 - [36mGitHub, [32m5 weeks ago
+[34m7d6a181 [31m (origin/issue-4, issue-4) [37mfeat: add React Switcher - [36mrenanromagnollo, [32m5 weeks ago
+[34mce681c2 [31m [37mfeat: add themes structure with Next Themes - [36mrenanromagnollo, [32m5 weeks ago
+[34m3a131d7 [31m [37mMerge pull request #11 from renanromagnollo/issue-4 - [36mGitHub, [32m5 weeks ago
+[34m80cb3af [31m [37mfeat: add Tailwind structure - [36mrenanromagnollo, [32m5 weeks ago
+[34m40c5642 [31m [37mMerge pull request #10 from renanromagnollo/issue-5 - [36mGitHub, [32m5 weeks ago
+[34m3f3e112 [31m (origin/issue-5, issue-5) [37mrefactor: change Google Analytics to GTM structure - [36mrenanromagnollo, [32m5 weeks ago
+[34m4490bff [31m [37mfeat: add Google Analytics - [36mrenanromagnollo, [32m5 weeks ago
+[34m187d481 [31m [37mMerge pull request #9 from renanromagnollo/issue-3 - [36mGitHub, [32m5 weeks ago
+[34mde64c5f [31m (origin/issue-3, issue-3) [37mfeat: add i18n completed structure - [36mrenanromagnollo, [32m5 weeks ago
+[34mad0aeda [31m [37mMerge pull request #8 from renanromagnollo/issue-1 - [36mGitHub, [32m5 weeks ago
+[34mefbb474 [31m (origin/issue-1) [37mfeat: add workflow - [36mrenanromagnollo, [32m5 weeks ago
+[34m5eb7eb1 [31m [37mfeat: add middleware and locale-types - [36mrenanromagnollo, [32m5 weeks ago
+[34mcb1194a [31m [37mfeat: add environments - [36mrenanromagnollo, [32m9 weeks ago
+[34mba28260 [31m [37mfeat: add logo component - [36mrenanromagnollo, [32m9 weeks ago
+[34m7740adb [31m [37mfeat: start project - [36mrenanromagnollo, [32m9 weeks ago

@@ -1,5 +1,6 @@
 import { RichTextHygraph } from "@/src/app/_components/hygraph/rich-text";
 import { getProjectItem } from "@/src/app/api";
+import { validateLocale } from "@/src/i18n";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -18,11 +19,11 @@ export default async function ProjectPage({
 }) {
   const { locale, slug } = await params;
 
-  const graphLocale = locale === "pt" ? "pt" : "en";
-
   if (!slug) notFound();
 
-  const project = await getProjectItem(slug, graphLocale, revalidate);
+  const validLocale = validateLocale(locale);
+
+  const project = await getProjectItem(slug, validLocale, revalidate);
 
   if (!project) notFound();
 

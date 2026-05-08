@@ -1,17 +1,24 @@
+'use client'
+
+import { useTranslation } from "@/src/hooks"
 
 
 export function Hero() {
+
+  const t = useTranslation()
+  console.log(t)
+
   return (
     <section className="min-h-[55vh] flex flex-col justify-center max-w-5xl mx-auto">
       <h2 className=" sm:text-5xl leading-tight">
-        Desenvolvimento Frontend focado em
+        {t.home.hero.titleA}
         <span className="block text-4xl text-primary">
-          performance e escalabilidade.
+          {t.home.hero.titleB}
         </span>
       </h2>
 
       <p className="mt-6 text-muted-foreground max-w-xl">
-        Crio interfaces modernas, priorizando performance, SEO e experiência do usuário.
+        {t.home.hero.subtitle}
       </p>
 
       <div className="mt-8 flex gap-4">

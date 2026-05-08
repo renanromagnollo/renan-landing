@@ -1,0 +1,83 @@
+{
+  "home": {
+    "hero": {
+      "titleA": "Frontend Development focused on",
+      "titleB": "performance and scalability.",
+      "subtitle": "I create modern interfaces, prioritizing performance, SEO, and user experience.",
+      "buttonProjects": "Projects",
+      "buttonContact": "Contact"
+    },
+    "structures": {
+      "title": "What I deliver",
+      "subtitle": "More than just code — solutions designed for performance, scalability, and results.",
+      "features": {
+        "performance": {
+          "title": "Performance",
+          "subtitle": "Fast applications with optimized Core Web Vitals and excellent user experience."
+        },
+        "architecture": {
+          "title": "Architecture",
+          "subtitle": "Scalable frontend architecture with Next.js, designed to grow without becoming messy."
+        },
+        "integrations": {
+          "title": "Integrations",
+          "subtitle": "Efficient integration with REST and GraphQL APIs, with robust data handling."
+        },
+        "seo": {
+          "title": "Technical SEO",
+          "subtitle": "Optimized structure for indexing, performance, and organic visibility."
+        },
+        "data": {
+          "title": "Data",
+          "subtitle": "Optimized structure for indexing, performance, and organic visibility."
+        },
+        "scalability": {
+          "title": "Scalability",
+          "subtitle": "Scalable frontend architecture with Next.js, designed to grow without becoming messy."
+        }
+      }
+    },
+    "aboutMe": {
+      "textMe": "Hi! This is me...",
+      "textTechs": "...and below are some of the technologies I use:"
+    },
+    "projects": {
+      "title": "Featured Projects",
+      "subtitle": "Some of the projects where I focused on performance, architecture, and user experience."
+    },
+    "contact": {
+      "title": "Let’s work together?",
+      "subtitle": "I’m available for Frontend Developer opportunities (React / Next.js), freelance work, or custom projects.",
+      "formTexts": {
+        "name": "Your name",
+        "email": "Your email",
+        "company": "Company (optional)",
+        "type": {
+          "job": "Job opportunity",
+          "freelance": "Freelance",
+          "partnership": "Partnership"
+        },
+        "message": "Tell me a bit about the opportunity or project...",
+        "buttonText": "Send Message"
+      },
+      "endText": "Want to leave a suggestion? Feel free 🙂"
+    }
+  },
+  "footer": {
+    "renanRomagnollo": {
+      "title": "Renan Romagnollo",
+      "text": "Frontend Developer specialized in modern, high-performance interfaces focused on conversion."
+    },
+    "contact": {
+      "title": "Contact",
+      "whatsappText": "Chat on WhatsApp"
+    },
+    "socialMedia": {
+      "title": "Social Media"
+    }
+  },
+  "spotify": {
+    "title": "Want to improve your focus?",
+    "text": "Listen to my playlist..."
+  }
+}

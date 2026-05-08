@@ -1,38 +1,50 @@
 import { getProjects } from "@/src/app/api";
+
 import { CardProject } from "./card/card-project";
 
-export async function Projects({ params }: { params: Promise<{ locale: string }> }) {
+import { TLocale } from "@/src/i18n/config";
+import { TDictionary } from "@/src/i18n/types";
 
-  const { locale } = await params
-  const graphLocale = locale === 'pt' ? 'pt' : 'en'
+interface ProjectsProps {
+  locale: TLocale;
+  dictionary: TDictionary
+}
 
-  const projects = await getProjects(graphLocale, 1)
-
-  // const featuredProject = projects.find(project => project.order === 0)
+export async function Projects({
+  locale,
+  dictionary
+}: ProjectsProps) {
+  const projects =
+    await getProjects(locale, 1);
 
   return (
     <section className="max-w-6xl mx-auto px-6 py-24">
       <header className="mb-16">
         <h3 className="text-primary">
-          Projetos em destaque
+          {dictionary.home.projects.title}
         </h3>
 
         <p className="text-muted-foreground mt-3 max-w-xl">
-          Alguns dos projetos onde foquei em performance, arquitetura e experiência do usuário.
+          {dictionary.home.projects.subtitle}
         </p>
       </header>
 
-      {/* {featuredProject && <FeaturedProject project={featuredProject} />} */}
-
       <div className="grid gap-6 sm:grid-cols-2">
-        {projects.filter(project => project.order !== 2).map((project, index) => (
-          <CardProject key={index} project={project} locale={locale} />
-        ))}
+        {projects
+          .filter(
+            (project) =>
+              project.order !== 2
+          )
+          .map((project, index) => (
+            <CardProject
+              key={index}
+              project={project}
+              locale={locale}
+            />
+          ))}
       </div>
     </section>
-
-
-  )
+  );
 }
 
-Projects.displayName = 'Projects'
+Projects.displayName = "Projects";
