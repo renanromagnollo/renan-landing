@@ -1,72 +1,149 @@
-import { NextRequest, NextResponse } from "next/server"
-import { ESupportedLocale, i18n } from "./types"
+import { NextRequest, NextResponse } from "next/server";
+import { ESupportedLocale, i18n } from "./i18n/config";
 
 
-const LOCALE_COOKIE = "locale"
+const LOCALE_COOKIE = "locale";
 
-function hasLocale(pathname: string): boolean {
-  return i18n.locales.some(
+function extractLocale(
+  pathname: string
+): ESupportedLocale | undefined {
+  return i18n.locales.find(
     (locale) =>
       pathname === `/${locale}` ||
       pathname.startsWith(`/${locale}/`)
-  )
+  );
 }
 
-function getLocaleFromHeader(request: NextRequest): ESupportedLocale {
-  const acceptLanguage = request.headers.get("accept-language")
+function getLocaleFromHeader(
+  request: NextRequest
+): ESupportedLocale {
+  const acceptLanguage =
+    request.headers.get("accept-language");
 
   if (!acceptLanguage) {
-    return i18n.defaultLocale
+    return i18n.defaultLocale;
   }
 
   const preferredLocales = acceptLanguage
     .split(",")
-    .map((lang) => lang.split(";")[0].trim().toLowerCase())
+    .map((lang) =>
+      lang.split(";")[0].trim().toLowerCase()
+    );
 
   for (const preferred of preferredLocales) {
-    const matched = i18n.locales.find(
-      (locale) =>
-        preferred === locale ||
-        preferred.startsWith(`${locale}-`)
-    )
+    const matched = i18n.locales.find((locale) => {
+      const normalizedLocale =
+        locale.toLowerCase();
+
+      return (
+        preferred === normalizedLocale ||
+        preferred.startsWith(
+          `${normalizedLocale}-`
+        )
+      );
+    });
 
     if (matched) {
-      return matched
+      return matched;
     }
   }
 
-  return i18n.defaultLocale
+  return i18n.defaultLocale;
 }
 
-function resolveLocale(request: NextRequest): ESupportedLocale {
-  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value
+function getLocaleFromCookie(
+  request: NextRequest
+): ESupportedLocale | null {
+  const locale =
+    request.cookies.get(LOCALE_COOKIE)?.value;
+
+  if (!locale) {
+    return null;
+  }
 
   if (
-    cookieLocale &&
-    i18n.locales.includes(cookieLocale as ESupportedLocale)
+    i18n.locales.includes(
+      locale as ESupportedLocale
+    )
   ) {
-    return cookieLocale as ESupportedLocale
+    return locale as ESupportedLocale;
   }
 
-  return getLocaleFromHeader(request)
+  return null;
 }
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+function resolveLocale(
+  request: NextRequest
+): ESupportedLocale {
+  const cookieLocale =
+    getLocaleFromCookie(request);
 
-  // 🔹 Se já tem locale → continua
-  if (hasLocale(pathname)) {
-    return NextResponse.next()
+  if (cookieLocale) {
+    return cookieLocale;
   }
 
-  const locale = resolveLocale(request)
+  return getLocaleFromHeader(request);
+}
 
-  const url = request.nextUrl.clone()
-  url.pathname = `/${locale}${pathname}`
+function setLocaleCookie(
+  response: NextResponse,
+  locale: ESupportedLocale
+) {
+  response.cookies.set(LOCALE_COOKIE, locale, {
+    path: "/",
+    sameSite: "lax",
+    secure:
+      process.env.NODE_ENV === "production",
+    maxAge: 60 * 60 * 24 * 365, // 1 ano
+  });
+}
 
-  return NextResponse.redirect(url)
+export function middleware(
+  request: NextRequest
+) {
+  const { pathname } = request.nextUrl;
+
+  // ✅ Ignora assets públicos explicitamente
+  if (
+    pathname.startsWith("/favicon") ||
+    pathname.startsWith("/robots.txt") ||
+    pathname.startsWith("/sitemap.xml")
+  ) {
+    return NextResponse.next();
+  }
+
+  // ✅ Locale já existe na URL
+  const pathnameLocale =
+    extractLocale(pathname);
+
+  if (pathnameLocale) {
+    const response = NextResponse.next();
+
+    setLocaleCookie(
+      response,
+      pathnameLocale
+    );
+
+    return response;
+  }
+
+  // ✅ Resolve locale automaticamente
+  const locale = resolveLocale(request);
+
+  const url = request.nextUrl.clone();
+
+  url.pathname = `/${locale}${pathname}`;
+
+  const response =
+    NextResponse.redirect(url);
+
+  setLocaleCookie(response, locale);
+
+  return response;
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
-}
+  matcher: [
+    "/((?!api|_next|.*\\..*).*)",
+  ],
+};

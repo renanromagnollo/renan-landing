@@ -1,6 +1,11 @@
+'use client'
+
+import { useTranslation } from "@/src/hooks";
 import Image from "next/image";
 
 export function Me() {
+
+  const t = useTranslation()
   return (
     <div className="flex flex-col items-center text-center">
       <Image
@@ -11,7 +16,7 @@ export function Me() {
         className="rounded-full object-cover grayscale"
       />
       <h4 className="mt-5 font-cursive">
-        Olá! Esse sou eu...
+        {t.home.aboutMe.textMe}
       </h4>
     </div>
   )

@@ -1,3 +1,6 @@
+'use client'
+
+import { useTranslation } from "@/src/hooks";
 import Image from "next/image";
 
 interface Tech {
@@ -61,9 +64,12 @@ const techs: Tech[] = [
 ];
 
 export function Techs() {
+
+  const t = useTranslation()
+
   return (
     <div className="w-full p-6">
-      <h4 className="font-cursive text-center mb-6">...e abaixo algumas das tecnologias que utilizo:</h4>
+      <h4 className="font-cursive text-center mb-6">{t.home.aboutMe.textTechs}</h4>
 
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 justify-items-center">

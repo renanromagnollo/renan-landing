@@ -1,0 +1,83 @@
+{
+  "home": {
+    "hero": {
+      "titleA": "Desenvolvimento Frontend focado em",
+      "titleB": "performance e escalabilidade.",
+      "subtitle": "Crio interfaces modernas, priorizando performance, SEO e experiência do usuário.",
+      "buttonProjects": "Projetos",
+      "buttonContact": "Contato"
+    },
+    "structures": {
+      "title": "O que eu entrego",
+      "subtitle": "Mais do que código — soluções pensadas para performance, escala e resultado.",
+      "features": {
+        "performance": {
+          "title": "Performance",
+          "subtitle": "Aplicações rápidas com Core Web Vitals otimizados e excelente experiência do usuário."
+        },
+        "architecture": {
+          "title": "Arquitetura",
+          "subtitle": "Frontend escalável com Next.js, pensado para crescer sem virar bagunça."
+        },
+        "integrations": {
+          "title": "Integrações",
+          "subtitle": "Conexão eficiente com APIs REST e GraphQL, com tratamento robusto de dados."
+        },
+        "seo": {
+          "title": "SEO Técnico",
+          "subtitle": "Estrutura otimizada para indexação, performance e visibilidade orgânica."
+        },
+        "data": {
+          "title": "Dados",
+          "subtitle": "Estrutura otimizada para indexação, performance e visibilidade orgânica."
+        },
+        "scalability": {
+          "title": "Escalabilidade",
+          "subtitle": "Frontend escalável com Next.js, pensado para crescer sem virar bagunça."
+        }
+      }
+    },
+    "aboutMe": {
+      "textMe": "Olá! Esse sou eu...",
+      "textTechs": "...e abaixo algumas das tecnologias que utilizo:"
+    },
+    "projects": {
+      "title": "Projetos em destaque",
+      "subtitle": "Alguns dos projetos onde foquei em performance, arquitetura e experiência do usuário."
+    },
+    "contact": {
+      "title": "Vamos trabalhar juntos?",
+      "subtitle": "Estou disponível para oportunidades como Frontend Developer (React / Next.js), freelances ou projetos sob demanda.",
+      "formTexts": {
+        "name": "Seu nome",
+        "email": "Seu email",
+        "company": "Empresa (opcional)",
+        "type": {
+          "job": "Oportunidade de trabalho",
+          "freelance": "Freelance",
+          "partnership": "Parceria"
+        },
+        "message": "Fale um pouco sobre a oportunidade ou projeto...",
+        "buttonText": "Enviar Mensagem"
+      },
+      "endText": "Quer deixar uma sugestão? Fique à vontade 🙂"
+    }
+  },
+  "footer": {
+    "renanRomagnollo": {
+      "title": "Renan Romagnollo",
+      "text": "Desenvolvedor Frontend especializado em interfaces modernas, performáticas e focadas em conversão."
+    },
+    "contact": {
+      "title": "Contato",
+      "whatsappText": "Falar no WhatsApp"
+    },
+    "socialMedia": {
+      "title": "Redes"
+    }
+  },
+  "spotify": {
+    "title": "Quer melhorar seu foco?",
+    "text": "Ouça a minha playlist..."
+  }
+}

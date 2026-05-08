@@ -1,9 +1,9 @@
 import { TService } from "."
 
-interface CardWhatIDoProps {
+interface CardStructuresProps {
   item: TService
 }
-export function CardWhatIDo({ item }: CardWhatIDoProps) {
+export function CardStructures({ item }: CardStructuresProps) {
 
   const Icon = item.icon
   return (

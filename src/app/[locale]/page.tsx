@@ -1,34 +1,51 @@
+import { getDictionary } from "@/src/i18n/get-dictionary";
+import {
+  AboutMe,
+  ContactSection,
+  Footer,
+  Header,
+  Hero,
+  Structures,
+} from "../_components/layout";
 
-// import { useTheme } from "next-themes";
-// import { Logo } from "../_components/logo";
-import { AboutMe, ContactSection, Footer, Header, Hero, WhatIDo } from "../_components/layout";
 import { Projects } from "../_components/layout/pages/home/projects";
-// import { useRef } from "react";
 
-export type HomeProps = {
-  params: Promise<{ locale: string }>
-}
+import { validateLocale } from "@/src/i18n/validate-locale";
 
-export default async function Home({ params }: HomeProps) {
-  // const { resolvedTheme } = useTheme()
-  // const { locale } = useTranslation()
+type HomeProps = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
 
-  // const { locale = 'pt' } = await params
+export default async function Home({
+  params,
+}: HomeProps) {
+  const { locale } = await params;
 
-  // const graphLocale = locale === 'pt' ? 'pt' : 'en'
+  const validLocale = validateLocale(locale);
+
+  const dictionary = await getDictionary(validLocale);
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 font-sans">
       <main className="flex flex-col w-full gap-5 py-16 md:py-24">
         <Header />
+
         <Hero />
-        <WhatIDo />
+
+        <Structures />
+
         <AboutMe />
-        <Projects params={params} />
+
+        <Projects
+          locale={validLocale}
+          dictionary={dictionary}
+        />
+
         <ContactSection />
+
         <Footer />
-        {/* <h2>Caveat</h2> */}
-        {/* <button onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}>Mudar tema</button> */}
       </main>
     </div>
   );

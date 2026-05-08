@@ -1,6 +1,6 @@
-import { getDictionary } from "@/src/dictionary/get-dictionary"
+import { i18n, TLocale } from "@/src/i18n/config"
+import { getDictionary } from "@/src/i18n/get-dictionary"
 import { Providers } from "@/src/providers"
-import { i18n, TLocale } from "@/src/types"
 import { notFound } from "next/navigation"
 
 interface LocaleLayoutProps {

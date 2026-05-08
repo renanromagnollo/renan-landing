@@ -1,22 +1,26 @@
+'use client'
+
 import { Mail, MessageCircle } from "lucide-react";
 import { Icon } from "../icons";
 import Link from "next/link";
-import { Spotify } from "../spotify";
-import Image from "next/image";
-
+import { useTranslation } from "@/src/hooks";
+import { SpotifyContainer } from "../spotify";
 export function Footer() {
+
+  const t = useTranslation();
+
   return (
     <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-20">
       <div className="max-w-6xl mx-auto px-6 py-12 grid gap-10 md:grid-cols-3">
         <div>
-          <h2 className="text-lg font-semibold">Renan Romagnollo</h2>
+          <h2 className="text-lg font-semibold">{t.footer.renanRomagnollo.title}</h2>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">
-            Desenvolvedor Frontend especializado em interfaces modernas, performáticas e focadas em conversão.
+            {t.footer.renanRomagnollo.text}
           </p>
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold mb-4">Contato</h3>
+          <h3 className="text-sm font-semibold mb-4">{t.footer.contact.title}</h3>
 
           <div className="flex flex-col gap-3 text-sm">
 
@@ -27,7 +31,7 @@ export function Footer() {
               className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-90 transition"
             >
               <MessageCircle size={16} />
-              Falar no WhatsApp
+              {t.footer.contact.whatsappText}
             </a>
 
             <a
@@ -42,7 +46,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold mb-4">Redes</h3>
+          <h3 className="text-sm font-semibold mb-4">{t.footer.socialMedia.title}</h3>
 
           <div className="flex gap-5 items-center">
             <Link href='https://github.com/renanromagnollo' target="_blank" title="GitHub">
@@ -60,28 +64,7 @@ export function Footer() {
 
       </div>
 
-      <div className="flex flex-col gap-5 md:flex-row">
-        <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden">
-          <Image
-            src='/assets/rnn_art.webp'
-            alt={`renanromagnollo`}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover object-center scale-150"
-            quality={90}
-            priority
-          />
-        </div>
-        <div>
-          <div className="mb-6">
-            <h4 className="font-cursive leading-tight">
-              Quer melhorar seu foco e produtividade?
-            </h4>
-            <h4 className="font-cursive text-primary leading-10">Utilize fones de ouvido e ouça a minha playlist para reduzir distrações e manter sua concentração...</h4>
-          </div>
-          <Spotify />
-        </div>
-      </div>
+      <SpotifyContainer />
 
 
 

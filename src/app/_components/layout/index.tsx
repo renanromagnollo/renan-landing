@@ -1,5 +1,5 @@
 export { Hero } from './pages/home/hero'
-export { WhatIDo } from './pages/home/whatido'
+export { Structures } from './pages/home/structures'
 export { Projects } from './pages/home/projects'
 export { AboutMe } from './pages/home/aboutme'
 export { ContactSection } from './pages/home/contact'

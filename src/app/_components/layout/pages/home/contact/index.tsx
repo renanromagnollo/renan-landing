@@ -1,10 +1,14 @@
 "use client";
 
 import { createContact } from "@/src/app/api";
+import { useTranslation } from "@/src/hooks";
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
 
 export function ContactSection() {
+
+  const t = useTranslation();
+
   const startTime = useRef<number>(0);
 
   useEffect(() => {
@@ -57,11 +61,10 @@ export function ContactSection() {
     <section className="w-full max-w-3xl mx-auto py-16 px-4">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold mb-3">
-          Vamos trabalhar juntos?
+          {t.home.contact.title}
         </h2>
         <p className="text-gray-500">
-          Estou disponível para oportunidades como Frontend Developer (React / Next.js),
-          freelances ou projetos sob demanda.
+          {t.home.contact.subtitle}
         </p>
       </div>
 
@@ -72,7 +75,7 @@ export function ContactSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
             name="name"
-            placeholder="Seu nome"
+            placeholder={t.home.contact.formTexts.name}
             className="p-3 rounded-lg border dark:bg-dark"
             required
           />
@@ -80,7 +83,7 @@ export function ContactSection() {
           <input
             name="email"
             type="email"
-            placeholder="Seu email"
+            placeholder={t.home.contact.formTexts.email}
             className="p-3 rounded-lg border dark:bg-zinc-800"
             required
           />
@@ -91,7 +94,7 @@ export function ContactSection() {
 
         <input
           name="company"
-          placeholder="Empresa (opcional)"
+          placeholder={t.home.contact.formTexts.company}
           className="w-full p-3 rounded-lg border dark:bg-zinc-800"
         />
 
@@ -99,9 +102,9 @@ export function ContactSection() {
           name="type"
           className="w-full p-3 rounded-lg border dark:bg-zinc-800"
         >
-          <option value="job">Oportunidade de trabalho</option>
-          <option value="freelance">Freelance</option>
-          <option value="partnership">Parceria</option>
+          <option value="job">{t.home.contact.formTexts.type.job}</option>
+          <option value="freelance">{t.home.contact.formTexts.type.freelance}</option>
+          <option value="partnership">{t.home.contact.formTexts.type.partnership}</option>
         </select>
 
         <textarea
@@ -115,12 +118,12 @@ export function ContactSection() {
           type="submit"
           className="w-full p-3 rounded-lg bg-black text-white hover:opacity-90 transition"
         >
-          Enviar mensagem
+          {t.home.contact.formTexts.buttonText}
         </button>
       </form>
 
       <div className="mt-10 text-center text-sm text-gray-400">
-        Quer deixar uma sugestão? Fique à vontade 🙂
+        {t.home.contact.textEnd}
       </div>
     </section>
   );
