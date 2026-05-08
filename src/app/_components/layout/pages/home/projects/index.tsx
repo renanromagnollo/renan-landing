@@ -18,7 +18,7 @@ export async function Projects({
     await getProjects(locale, 1);
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-24">
+    <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
       <header className="mb-16">
         <h3 className="text-primary">
           {dictionary.home.projects.title}
