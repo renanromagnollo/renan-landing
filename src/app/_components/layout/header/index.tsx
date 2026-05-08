@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import { useMounted } from "@/src/hooks";
 import { Logo, ThemeSwitcher } from "..";
+import { LanguageSwitcher } from "../languageswitcher";
 
 export function Header() {
 
@@ -16,8 +17,9 @@ export function Header() {
   if (!mounted) return null;
 
   return (
-    <div className="flex flex-col sm:mb-10 w-full items-start justify-between ">
-      <div className="self-end">
+    <div className="flex flex-col sm:mb-10 w-full items-start justify-between">
+      <div className="flex self-end gap-5">
+        <LanguageSwitcher />
         <ThemeSwitcher />
       </div>
       <Logo theme={theme} />
