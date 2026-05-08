@@ -1,6 +1,6 @@
 'use client'
 
-import { TDictionary } from "@/src/types";
+import { TDictionary } from "@/src/i18n";
 import { createContext } from "react";
 
 export const TranslationContext = createContext<TDictionary | null>(null);

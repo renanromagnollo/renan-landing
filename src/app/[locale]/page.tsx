@@ -3,7 +3,6 @@ import {
   AboutMe,
   ContactSection,
   Footer,
-  Header,
   Hero,
   Structures,
 } from "../_components/layout";
@@ -28,25 +27,23 @@ export default async function Home({
   const dictionary = await getDictionary(validLocale);
 
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 font-sans">
-      <main className="flex flex-col w-full gap-5 py-16 md:py-24">
-        <Header />
+    <>
+      {/* <Header /> */}
 
-        <Hero />
+      <Hero />
 
-        <Structures />
+      <Structures />
 
-        <AboutMe />
+      <AboutMe />
 
-        <Projects
-          locale={validLocale}
-          dictionary={dictionary}
-        />
+      <Projects
+        locale={validLocale}
+        dictionary={dictionary}
+      />
 
-        <ContactSection />
+      <ContactSection />
 
-        <Footer />
-      </main>
-    </div>
+      <Footer />
+    </>
   );
 }

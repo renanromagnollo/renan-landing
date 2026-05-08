@@ -123,7 +123,7 @@ export function ContactSection() {
       </form>
 
       <div className="mt-10 text-center text-sm text-gray-400">
-        {t.home.contact.textEnd}
+        {t.home.contact.endText}
       </div>
     </section>
   );
