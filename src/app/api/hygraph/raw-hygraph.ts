@@ -17,3 +17,28 @@ export type RawHygraphProject = {
   text: { raw: RichTextContent };
   link: string;
 }
+
+export type RawHygraphBlogPost = {
+  id: string;
+  order: number;
+  featured: boolean;
+  image: {
+    url: string
+  }
+  title: string
+  slug: string
+  text: {
+    raw: RichTextContent
+  }
+  tags: string[]
+  relatedPost: {
+    image: {
+      url: string
+    }
+    title: string
+    slug: string
+    text: {
+      raw: RichTextContent
+    };
+  }
+}

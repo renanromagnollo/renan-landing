@@ -4,13 +4,12 @@ import { Mail, MessageCircle } from "lucide-react";
 import { Icon } from "../icons";
 import Link from "next/link";
 import { useTranslation } from "@/src/hooks";
-import { SpotifyContainer } from "../spotify";
 export function Footer() {
 
   const t = useTranslation();
 
   return (
-    <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-20">
+    <footer className=" border-t border-zinc-200 dark:border-zinc-800 mt-20">
       <div className="max-w-6xl mx-auto px-6 py-12 grid gap-10 md:grid-cols-3">
         <div>
           <h2 className="text-lg font-semibold">{t.footer.renanRomagnollo.title}</h2>
@@ -64,7 +63,7 @@ export function Footer() {
 
       </div>
 
-      <SpotifyContainer />
+
 
 
 

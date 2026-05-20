@@ -13,3 +13,12 @@ export type TProject = {
   text: RichTextContent | null;
   link: string;
 }
+export type TCardProject = {
+  order: number;
+  slug: string;
+  image: string;
+  name: string;
+  title: string;
+  subtitle: string;
+  technologies: { name: string }[];
+}
