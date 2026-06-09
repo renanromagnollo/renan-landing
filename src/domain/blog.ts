@@ -2,6 +2,7 @@ import { RichTextContent } from "@graphcms/rich-text-types";
 
 export type TBlogPost = {
   id: string;
+  updatedAt: string;
   order: number;
   featured: boolean;
   image: string;
@@ -13,6 +14,7 @@ export type TBlogPost = {
 };
 export type TBlogFeaturePost = {
   id: string;
+  updatedAt: string;
   order: number;
   image: string;
   title: string;

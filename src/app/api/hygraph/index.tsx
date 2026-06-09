@@ -17,7 +17,7 @@ export class HygraphAPI implements IHygraphApi {
             first: 20
           ){
             id
-            order
+            updatedAt
             featured
             title
             slug
@@ -40,6 +40,7 @@ export class HygraphAPI implements IHygraphApi {
         query ProjectItem($slug: String!, $locale: Locale!) {
           projects(where: {slug: $slug}, locales: [$locale, pt]) {
             id
+            updatedAt
             order
             featured
             title
@@ -66,6 +67,8 @@ export class HygraphAPI implements IHygraphApi {
             orderBy: createdAt_DESC
             first: 40
           ) {
+            id
+            updatedAt
             image {
               url
             }
@@ -94,6 +97,7 @@ export class HygraphAPI implements IHygraphApi {
             first: 20
           ) {
             id
+            updatedAt
             image { url }
             title
             slug
@@ -139,6 +143,7 @@ export class HygraphAPI implements IHygraphApi {
         query BlogItem($slug: String!, $locale: Locale!) {
           blogs(where: {slug: $slug}, locales: [$locale, pt]) {
             id
+            updatedAt
             order
             featured
             image {
@@ -175,7 +180,6 @@ export class HygraphAPI implements IHygraphApi {
 
     const blogs = data.blogs ?? [];
 
-    console.log("[HYGRAPH] blogs received:", blogs.length);
 
     return blogs.map((b) => this.mapRawHygraphBlogPost(b));
   }
@@ -219,6 +223,7 @@ export class HygraphAPI implements IHygraphApi {
   private mapRawHygraphProject(raw?: RawHygraphProject): TProject {
     return {
       id: raw?.id ?? crypto.randomUUID(),
+      updatedAt: raw?.updatedAt ?? "",
       order: raw?.order ?? 0,
       featured: raw?.featured ?? false,
       title: raw?.title ?? "",
@@ -235,6 +240,7 @@ export class HygraphAPI implements IHygraphApi {
   private mapRawHygraphBlogPost(raw: RawHygraphBlogPost): TBlogPost {
     return {
       id: raw?.id ?? crypto.randomUUID(),
+      updatedAt: raw?.updatedAt ?? '',
       order: raw?.order ?? 0,
       featured: raw?.featured ?? false,
       image: raw.image?.url ?? '',

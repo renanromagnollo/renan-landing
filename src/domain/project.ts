@@ -2,6 +2,7 @@ import { RichTextContent } from "@graphcms/rich-text-types";
 
 export type TProject = {
   id: string;
+  updatedAt: string;
   order: number;
   featured: boolean;
   title: string;

@@ -80,7 +80,7 @@ export default async function BlogPage({
         </section>
       )}
 
-      {blogPost.technologies?.length > 0 && (
+      {/* {blogPost.technologies?.length > 0 && (
         <section className="mb-20">
           <h2 className="text-2xl md:text-3xl font-semibold text-zinc-300 mb-8 text-center">
             Tecnologias Utilizadas
@@ -97,7 +97,7 @@ export default async function BlogPage({
             ))}
           </ul>
         </section>
-      )}
+      )} */}
 
       <section className="mb-20">
         <h2 className="text-2xl md:text-3xl font-semibold text-zinc-300 mb-8 text-center">
