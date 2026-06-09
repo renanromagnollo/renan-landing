@@ -9,9 +9,9 @@ export function SpotifyContainer() {
   const t = useTranslation();
 
   return (
-    <div className="flex flex-col gap-5 md:flex-row">
+    <div className="w-full flex flex-col gap-5 md:flex-row">
 
-      <div className="relative w-full md:basis-1/3 aspect-square rounded-3xl overflow-hidden">
+      {/* <div className="relative w-full md:basis-1/3 aspect-square rounded-3xl overflow-hidden">
         <Image
           src='/assets/rnn_art.webp'
           alt='renanromagnollo'
@@ -21,9 +21,9 @@ export function SpotifyContainer() {
           quality={80}
           priority
         />
-      </div>
+      </div> */}
 
-      <div className="md:basis-2/3">
+      <div className="w-full">
         <div className="mb-6">
           <h4 className="font-cursive leading-tight">
             {t.spotify.title}

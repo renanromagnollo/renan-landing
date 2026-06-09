@@ -1,8 +1,9 @@
 
 import { TEnvironment } from "@/src/config";
 import { IHygraphApi, THygraphSchema } from "@/src/types";
-import { RawHygraphProject } from "./raw-hygraph";
+import { RawHygraphBlogPost, RawHygraphProject } from "./raw-hygraph";
 import { TProject } from "@/src/domain/project";
+import { TBlogPost } from "@/src/domain";
 
 export class HygraphAPI implements IHygraphApi {
   private readonly queries: Record<string, string>;
@@ -16,6 +17,30 @@ export class HygraphAPI implements IHygraphApi {
             first: 20
           ){
             id
+            updatedAt
+            featured
+            title
+            slug
+            subtitle
+            projectName
+            image {
+              url
+            }
+            technologies {
+              name
+            }
+            text {
+              raw
+            }
+            link
+          }
+        }
+      `,
+      blogPost: `
+        query ProjectItem($slug: String!, $locale: Locale!) {
+          projects(where: {slug: $slug}, locales: [$locale, pt]) {
+            id
+            updatedAt
             order
             featured
             title
@@ -35,26 +60,101 @@ export class HygraphAPI implements IHygraphApi {
           }
         }
       `,
-      projectItem: `
-        query ProjectItem($slug: String!, $locale: Locale!) {
-          projects(where: {slug: $slug}, locales: [$locale, pt]) {
+      blogs: `
+        query BlogPosts($locale: Locale!) {
+          blogs(
+            locales: [$locale, pt]
+            orderBy: createdAt_DESC
+            first: 40
+          ) {
             id
-            order
-            featured
-            title
-            slug
-            subtitle
-            projectName
+            updatedAt
             image {
               url
             }
-            technologies {
-              name
-            }
+            title
+            slug
+            tags
             text {
               raw
             }
-            link
+            relatedPost {
+              image {
+                url
+              }
+              title
+              slug
+            }
+          }
+        }
+      `,
+      blogFeatures: `
+        query BlogFeatures($locale: Locale!) {
+          blogs(
+            where: { featured: true }
+            locales: [$locale, pt]
+            orderBy: createdAt_DESC
+            first: 20
+          ) {
+            id
+            updatedAt
+            image { url }
+            title
+            slug
+            tags
+            text { raw }
+            relatedPost {
+              image { url }
+              title
+              slug
+              text { raw }
+            }
+          }
+        }
+      `,
+      // blogFeatures: `
+      //   query BlogFeatures($locale: Locale!) {
+      //     blogs(
+      //       where: { featured: true }
+      //       locales: [$locale, pt]
+      //       orderBy: position_ASC
+      //       first: 20
+      //     ) {
+      //       image {
+      //         url
+      //       }
+      //       title
+      //       slug
+      //       tags
+      //       text {
+      //         raw
+      //       }
+      //         relatedPost {
+      //         image {
+      //           url
+      //         }
+      //         title
+      //         slug
+      //       }
+      //     }
+      //   }
+      // `,
+      blogItem: `
+        query BlogItem($slug: String!, $locale: Locale!) {
+          blogs(where: {slug: $slug}, locales: [$locale, pt]) {
+            id
+            updatedAt
+            order
+            featured
+            image {
+              url
+            }
+            title
+            slug
+            text {
+              raw
+            }
+            tags
           }
         }
       `,
@@ -63,10 +163,25 @@ export class HygraphAPI implements IHygraphApi {
 
   private getQuery(queryName: THygraphSchema): string {
     const query = this.queries[queryName];
-    if (!query) {
-      throw new Error(`Query ${queryName} not found`);
-    }
+    if (!query) throw new Error(`Query ${queryName} not found`);
     return query;
+  }
+
+  async getBlogFeatures({
+    locale,
+    revalidate,
+  }: {
+    locale: string;
+    revalidate?: number;
+  }): Promise<TBlogPost[]> {
+    const data = await this.queryHygraph<{
+      blogs: RawHygraphBlogPost[];
+    }>("blogFeatures", 0, { locale }, revalidate);
+
+    const blogs = data.blogs ?? [];
+
+
+    return blogs.map((b) => this.mapRawHygraphBlogPost(b));
   }
 
   private async queryHygraph<T>(
@@ -75,43 +190,40 @@ export class HygraphAPI implements IHygraphApi {
     variables = {},
     revalidate = 1
   ): Promise<T> {
-    try {
-      if (delay > 0) {
-        await new Promise((resolve) => setTimeout(resolve, delay * 1000));
-      }
-
-      const query = this.getQuery(queryName);
-
-      const response = await fetch(this.env.hygraph.apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(this.env.hygraph.accessToken && {
-            Authorization: `Bearer ${this.env.hygraph.accessToken}`,
-          }),
-        },
-        body: JSON.stringify({ query, variables }),
-        next: {
-          revalidate: (revalidate ?? 1) * 60,
-        },
-      });
-
-      const json = await response.json();
-
-      if (!response.ok || json.errors) {
-        throw new Error(json?.errors?.[0]?.message || "Hygraph error");
-      }
-
-      return json.data as T;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      return {} as T
+    if (delay > 0) {
+      await new Promise((r) => setTimeout(r, delay * 1000));
     }
+
+    const query = this.getQuery(queryName);
+
+    const response = await fetch(this.env.hygraph.apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(this.env.hygraph.accessToken && {
+          Authorization: `Bearer ${this.env.hygraph.accessToken}`,
+        }),
+      },
+      body: JSON.stringify({ query, variables }),
+      next: {
+        revalidate,
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok || json.errors) {
+      console.error("[HYGRAPH ERROR]", json.errors);
+      throw new Error(json?.errors?.[0]?.message || "Hygraph error");
+    }
+
+    return json.data as T;
   }
 
   private mapRawHygraphProject(raw?: RawHygraphProject): TProject {
     return {
       id: raw?.id ?? crypto.randomUUID(),
+      updatedAt: raw?.updatedAt ?? "",
       order: raw?.order ?? 0,
       featured: raw?.featured ?? false,
       title: raw?.title ?? "",
@@ -123,6 +235,26 @@ export class HygraphAPI implements IHygraphApi {
       text: raw?.text?.raw ?? null,
       link: raw?.link ?? "",
     };
+  }
+
+  private mapRawHygraphBlogPost(raw: RawHygraphBlogPost): TBlogPost {
+    return {
+      id: raw?.id ?? crypto.randomUUID(),
+      updatedAt: raw?.updatedAt ?? '',
+      order: raw?.order ?? 0,
+      featured: raw?.featured ?? false,
+      image: raw.image?.url ?? '',
+      title: raw.title ?? '',
+      slug: raw.slug ?? '',
+      tags: raw.tags ?? [],
+      text: raw.text.raw,
+      relatedPost: {
+        image: raw.relatedPost?.image?.url ?? '',
+        title: raw.relatedPost?.title ?? '',
+        slug: raw.relatedPost?.slug ?? '',
+        text: raw.relatedPost?.text?.raw
+      }
+    }
   }
 
   async queryProjects({
@@ -161,7 +293,7 @@ export class HygraphAPI implements IHygraphApi {
     const data = await this.queryHygraph<{
       projects: RawHygraphProject[]
     }>(
-      "projectItem",
+      "projects",
       0,
       { slug, locale },
       revalidate
@@ -174,5 +306,49 @@ export class HygraphAPI implements IHygraphApi {
     }
 
     return this.mapRawHygraphProject(projectItem);
+  }
+  async queryBlogs({
+    locale,
+    revalidate,
+  }: {
+    locale: string;
+    revalidate?: number;
+  }): Promise<TProject[]> {
+
+    const data = await this.queryHygraph<{
+      projects: RawHygraphProject[]
+    }>(
+      "projects",
+      0,
+      { locale },
+      revalidate
+    );
+
+    const projects = data.projects ?? [];
+
+    return projects
+      .filter(Boolean)
+      .map((p) => this.mapRawHygraphProject(p));
+  }
+
+  async queryBlogItem({
+    slug,
+    locale,
+    revalidate,
+  }: {
+    slug: string;
+    locale: string;
+    revalidate?: number;
+  }): Promise<TBlogPost | null> {
+    const { blogs } = await this.queryHygraph<{ blogs: RawHygraphBlogPost[] }>(
+      "blogItem", 0, { slug, locale }, revalidate
+    );
+    const blogPost = blogs?.[0]
+
+    if (!blogPost) {
+      return null
+    }
+
+    return this.mapRawHygraphBlogPost(blogPost);
   }
 }

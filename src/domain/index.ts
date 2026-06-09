@@ -1,1 +1,2 @@
-export { type TProject } from '@/src/domain/project';
+export { type TProject, type TCardProject } from '@/src/domain/project';
+export { type TBlogPost, type TRelatedBlogPost, type THomeBlogPost, type TBlogCardProps, type TBlogFeaturePost } from '@/src/domain/blog';

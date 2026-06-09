@@ -14,8 +14,7 @@ export async function Projects({
   locale,
   dictionary
 }: ProjectsProps) {
-  const projects =
-    await getProjects(locale, 1);
+  const projects = await getProjects(locale, 1);
 
   return (
     <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
@@ -31,10 +30,7 @@ export async function Projects({
 
       <div className="grid gap-6 sm:grid-cols-2">
         {projects
-          .filter(
-            (project) =>
-              project.order !== 2
-          )
+          .filter((project) => project.order !== 2)
           .map((project, index) => (
             <CardProject
               key={index}
