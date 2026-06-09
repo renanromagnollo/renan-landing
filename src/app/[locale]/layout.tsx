@@ -23,7 +23,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <Providers dictionary={dictionary}>
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="mx-auto w-full px-4 sm:px-6 lg:px-8 font-sans">
         <main className="flex flex-col w-full gap-5 py-16 md:py-24">
           <Header locale={locale as TLocale} />
 

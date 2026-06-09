@@ -3,7 +3,7 @@ import {
   TLocale,
 } from "./config";
 
-export function getHygraphLocale(
+export function getLocale(
   locale: TLocale
 ) {
   switch (locale) {

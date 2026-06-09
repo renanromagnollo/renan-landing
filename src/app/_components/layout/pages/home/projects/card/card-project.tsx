@@ -1,9 +1,9 @@
-import { TProject } from "@/src/domain";
+import { TCardProject } from "@/src/domain";
 import Image from "next/image";
 import Link from "next/link";
 
 interface CardProjectProps {
-  project: TProject
+  project: TCardProject
   locale: string
 }
 export function CardProject({ project, locale }: CardProjectProps) {

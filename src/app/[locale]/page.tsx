@@ -1,9 +1,11 @@
 import { getDictionary } from "@/src/i18n/get-dictionary";
 import {
   AboutMe,
+  BlogFeatures,
   ContactSection,
   Footer,
   Hero,
+  SpotifyContainer,
   Structures,
 } from "../_components/layout";
 
@@ -40,10 +42,19 @@ export default async function Home({
         locale={validLocale}
         dictionary={dictionary}
       />
+      <BlogFeatures
+        locale={validLocale}
+        dictionary={dictionary}
+      />
 
       <ContactSection />
+      <div className="mx-auto lg:w-[50%]">
 
+        <SpotifyContainer />
+      </div>
       <Footer />
+
+
     </>
   );
 }

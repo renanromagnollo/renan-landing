@@ -2,6 +2,7 @@ import { RichTextContent } from "@graphcms/rich-text-types";
 
 export type TProject = {
   id: string;
+  updatedAt: string;
   order: number;
   featured: boolean;
   title: string;
@@ -12,4 +13,13 @@ export type TProject = {
   technologies: { name: string }[];
   text: RichTextContent | null;
   link: string;
+}
+export type TCardProject = {
+  order: number;
+  slug: string;
+  image: string;
+  name: string;
+  title: string;
+  subtitle: string;
+  technologies: { name: string }[];
 }

@@ -2,6 +2,7 @@ import { RichTextContent } from '@graphcms/rich-text-types';
 
 export type RawHygraphProject = {
   id: string;
+  updatedAt: string;
   order: number;
   featured: boolean;
   title: string;
@@ -16,4 +17,30 @@ export type RawHygraphProject = {
   }[];
   text: { raw: RichTextContent };
   link: string;
+}
+
+export type RawHygraphBlogPost = {
+  id: string;
+  updatedAt: string;
+  order: number;
+  featured: boolean;
+  image: {
+    url: string
+  }
+  title: string
+  slug: string
+  text: {
+    raw: RichTextContent
+  }
+  tags: string[]
+  relatedPost: {
+    image: {
+      url: string
+    }
+    title: string
+    slug: string
+    text: {
+      raw: RichTextContent
+    };
+  }
 }
