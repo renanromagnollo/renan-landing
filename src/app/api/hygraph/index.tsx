@@ -36,6 +36,33 @@ export class HygraphAPI implements IHygraphApi {
           }
         }
       `,
+      projectsFeatures: `
+        query Projects($locale: Locale!) {
+          projects(
+            where: {featured: true},
+            locales: [$locale, pt]
+            first: 20
+          ){
+            id
+            updatedAt
+            featured
+            title
+            slug
+            subtitle
+            projectName
+            image {
+              url
+            }
+            technologies {
+              name
+            }
+            text {
+              raw
+            }
+            link
+          }
+        }
+      `,
       blogPost: `
         query ProjectItem($slug: String!, $locale: Locale!) {
           projects(where: {slug: $slug}, locales: [$locale, pt]) {
@@ -269,6 +296,29 @@ export class HygraphAPI implements IHygraphApi {
       projects: RawHygraphProject[]
     }>(
       "projects",
+      0,
+      { locale },
+      revalidate
+    );
+
+    const projects = data.projects ?? [];
+
+    return projects
+      .filter(Boolean)
+      .map((p) => this.mapRawHygraphProject(p));
+  }
+  async queryProjectsFeatures({
+    locale,
+    revalidate,
+  }: {
+    locale: string;
+    revalidate?: number;
+  }): Promise<TProject[]> {
+
+    const data = await this.queryHygraph<{
+      projects: RawHygraphProject[]
+    }>(
+      "projectsFeatures",
       0,
       { locale },
       revalidate

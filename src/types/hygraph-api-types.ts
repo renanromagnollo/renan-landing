@@ -1,10 +1,11 @@
 import { TBlogFeaturePost, TBlogPost, TProject } from "../domain"
 
-export type THygraphSchema = 'informations' | 'projects' | 'technologies' | 'blogs' | 'projectItem' | 'blogItem' | 'blogFeatures'
+export type THygraphSchema = 'informations' | 'projects' | 'technologies' | 'blogs' | 'projectItem' | 'blogItem' | 'blogFeatures' | 'projectsFeatures'
 
 export interface IHygraphApi {
   // getInformations({ locale, revalidate }: { locale: string, revalidate: number }): Promise<any>
   queryProjects({ locale, revalidate }: { locale: string, revalidate: number }): Promise<TProject[]>
+  queryProjectsFeatures({ locale, revalidate }: { locale: string, revalidate: number }): Promise<TProject[]>
   queryProjectItem({ slug, locale, revalidate }: { slug: string, locale: string, revalidate: number }): Promise<TProject | null>
   queryBlogs({ locale, revalidate }: { locale: string, revalidate: number }): Promise<TProject[]>
   queryBlogItem({ slug, locale, revalidate }: { slug: string, locale: string, revalidate: number }): Promise<TBlogPost | null>
