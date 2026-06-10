@@ -4,6 +4,7 @@ import { CardProject } from "./card/card-project";
 
 import { TLocale } from "@/src/i18n/config";
 import { TDictionary } from "@/src/i18n/types";
+import { getProjectsFeatures } from "@/src/app/api/get-projects";
 
 interface ProjectsProps {
   locale: TLocale;
@@ -14,7 +15,7 @@ export async function Projects({
   locale,
   dictionary
 }: ProjectsProps) {
-  const projects = await getProjects(locale, 1);
+  const projectsFeatures = await getProjectsFeatures(locale, 1);
 
   return (
     <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
@@ -29,7 +30,7 @@ export async function Projects({
       </header>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        {projects
+        {projectsFeatures
           .filter((project) => project.order !== 2)
           .map((project, index) => (
             <CardProject

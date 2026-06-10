@@ -25,6 +25,27 @@ export const getProjects = cache(
     }
   }
 )
+export const getProjectsFeatures = cache(
+  async (
+    locale: TLocale,
+    revalidate?: number
+  ) => {
+    try {
+      const api = new HygraphAPI(buildEnvironment())
+
+      const graphLocale = getLocale(locale)
+
+      return await api.queryProjectsFeatures({
+        locale: graphLocale,
+        revalidate,
+      })
+    } catch (error) {
+      console.error("getProjects error:", error)
+
+      return []
+    }
+  }
+)
 
 export const getProjectItem = cache(
   async (
